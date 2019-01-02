@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="StokTakip" Class="DbStokDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=StokTakip;Integrated Security=True" SettingsObjectName="SLNStokTakip.Properties.Settings" SettingsPropertyName="StokTakipConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.bgFirma" Member="bgFirmas">
+    <Type Name="bgFirma">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Fno" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Fadi" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Fadres" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Ftel1" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Ftel2" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Ffaks" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Fyetkili" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Fdepartman" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Fweb" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Femail" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Fvd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Fvno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Ftipi" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="saveUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="saveDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="updateUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="updateDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="bgFirma_stUrunKayitUst" Member="stUrunKayitUsts" ThisKey="Fno" OtherKey="FirmaId" Type="stUrunKayitUst" />
+      <Association Name="bgFirma_stUrunCiki" Member="stUrunCikis" ThisKey="Fno" OtherKey="FirmaId" Type="stUrunCiki" />
+      <Association Name="bgFirma_ftFaturaKesUst" Member="ftFaturaKesUsts" ThisKey="Fno" OtherKey="CariId" Type="ftFaturaKesUst" />
+      <Association Name="bgFirmaTipi_bgFirma" Member="bgFirmaTipi" ThisKey="Ftipi" OtherKey="Id" Type="bgFirmaTipi" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.stUrunKayitUst" Member="stUrunKayitUsts">
+    <Type Name="stUrunKayitUst">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GenelNo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GirisKod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FirmaId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GirisTarih" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Aciklama" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
+      <Column Name="saveUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="saveDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="updateUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="updateDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FaturaNo" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Association Name="bgFirma_stUrunKayitUst" Member="bgFirma" ThisKey="FirmaId" OtherKey="Fno" Type="bgFirma" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bgFirmaTipi" Member="bgFirmaTipis">
+    <Type Name="bgFirmaTipi">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Ftipi" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Association Name="bgFirmaTipi_bgFirma" Member="bgFirmas" ThisKey="Id" OtherKey="Ftipi" Type="bgFirma" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bgKategori" Member="bgKategoris">
+    <Type Name="bgKategori">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="KategoriAdi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="bgKategori_bgUrunGiri" Member="bgUrunGiris" ThisKey="Id" OtherKey="KategoriId" Type="bgUrunGiri" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bgKullanicilar" Member="bgKullanicilars">
+    <Type Name="bgKullanicilar">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Kadi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Ksoyadi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Adres" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Tel" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Ktipi" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Sifre" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Gsm" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="GenelNo" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Association Name="bgKulTipi_bgKullanicilar" Member="bgKulTipi" ThisKey="Ktipi" OtherKey="Id" Type="bgKulTipi" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bgKulTipi" Member="bgKulTipis">
+    <Type Name="bgKulTipi">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="KulTipi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="bgKulTipi_bgKullanicilar" Member="bgKullanicilars" ThisKey="Id" OtherKey="Ktipi" Type="bgKullanicilar" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bgSira" Member="bgSiras">
+    <Type Name="bgSira">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Sadi" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Sno" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.bgUrunGiris" Member="bgUrunGiris">
+    <Type Name="bgUrunGiri">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UrunNo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UrunKodu" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="UrunAciklama" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="KategoriId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="saveUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="saveDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="updateUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="updateDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="bgKategori_bgUrunGiri" Member="bgKategori" ThisKey="KategoriId" OtherKey="Id" Type="bgKategori" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.stStokDurum" Member="stStokDurums">
+    <Type Name="stStokDurum">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UrunKodu" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="LotSeriNo" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Adet" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Aciklama" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="stStokDurum_stUrunCiki" Member="stUrunCikis" ThisKey="Id" OtherKey="UrunId" Type="stUrunCiki" />
+      <Association Name="stStokDurum_ftFaturaKesAlt" Member="ftFaturaKesAlts" ThisKey="Id" OtherKey="UrunId" Type="ftFaturaKesAlt" />
+    </Type>
+  </Table>
+  <Table Name="dbo.stUrunCikis" Member="stUrunCikis">
+    <Type Name="stUrunCiki">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CikisNo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FirmaId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UrunId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Adet" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tarih" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Cturu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Aciklama" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="FaturaDurum" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="saveUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="saveDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="updateUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="updateDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="bgFirma_stUrunCiki" Member="bgFirma" ThisKey="FirmaId" OtherKey="Fno" Type="bgFirma" IsForeignKey="true" />
+      <Association Name="stStokDurum_stUrunCiki" Member="stStokDurum" ThisKey="UrunId" OtherKey="Id" Type="stStokDurum" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.stUrunKayitAlt" Member="stUrunKayitAlts">
+    <Type Name="stUrunKayitAlt">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GenelNo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GirisKod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UrunKodu" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="LotSeriNo" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Adet" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Bfiyat" Type="System.Decimal" DbType="Decimal(10,4)" CanBeNull="true" />
+      <Column Name="Aciklama" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Nott" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ftFaturaKesAlt" Member="ftFaturaKesAlts">
+    <Type Name="ftFaturaKesAlt">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FKayitNo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UrunId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cadet" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BFiyat" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Tutar" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Association Name="stStokDurum_ftFaturaKesAlt" Member="stStokDurum" ThisKey="UrunId" OtherKey="Id" Type="stStokDurum" IsForeignKey="true" />
+      <Association Name="ftFaturaKesUst_ftFaturaKesAlt" Member="ftFaturaKesUst" ThisKey="FKayitNo" OtherKey="FKayitNo" Type="ftFaturaKesUst" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ftFaturaKesUst" Member="ftFaturaKesUsts">
+    <Type Name="ftFaturaKesUst">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FKayitNo" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CariId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tarih" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Saat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Yazi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Atoplam" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="KdvToplam" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Ttutar" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="CikisNo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="ftFaturaKesUst_ftFaturaKesAlt" Member="ftFaturaKesAlts" ThisKey="FKayitNo" OtherKey="FKayitNo" Type="ftFaturaKesAlt" />
+      <Association Name="bgFirma_ftFaturaKesUst" Member="bgFirma" ThisKey="CariId" OtherKey="Fno" Type="bgFirma" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vwFaturaKes" Member="vwFaturaKes">
+    <Type Name="vwFaturaKe">
+      <Column Name="FKayitNo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Tarih" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Ttutar" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Saat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Yazi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KdvToplam" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Atoplam" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Tutar" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Cadet" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BFiyat" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="CariId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Fadi" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Fadres" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Ftel1" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Ftel2" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Ffaks" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Fyetkili" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Fdepartman" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Fweb" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Femail" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Fvd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Fvno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Ftipi" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UrunId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LotSeriNo" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="UrunKodu" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Aciklama" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CikisNo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
